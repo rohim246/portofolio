@@ -15,7 +15,7 @@ const timeline = [
     description:
       "Menjalani Pendidikan Profesi Guru (PPG) untuk menjadi guru informatika profesional. Mengasah kemampuan pedagogik, merancang pembelajaran inovatif, dan memperdalam kompetensi teknologi pendidikan.",
     icon: HiAcademicCap,
-    color: "from-primary-500 to-violet-500",
+    color: "from-primary-500 to-teal-500",
   },
   {
     year: "2024",
@@ -59,7 +59,7 @@ const About = () => {
     <SectionWrapper id="about">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <motion.span
             className="inline-block text-sm font-semibold text-accent-500 tracking-widest uppercase mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -79,7 +79,7 @@ const About = () => {
           </motion.h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left: Story */}
           <motion.div
             variants={containerVariants}
@@ -90,10 +90,10 @@ const About = () => {
             {/* Info card */}
             <motion.div
               variants={itemVariants}
-              className="glass rounded-2xl p-8 mb-8"
+              className="glass rounded-2xl p-8 mb-10"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-violet-500 flex items-center justify-center">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-teal-500 flex items-center justify-center">
                   <HiSparkles className="text-white" size={22} />
                 </div>
                 <div>
@@ -119,7 +119,7 @@ const About = () => {
               </p>
 
               {/* Quick facts */}
-              <div className="mt-6 pt-6 border-t border-white/10 grid grid-cols-2 gap-4">
+              <div className="mt-6 pt-6 border-t border-white/10 grid grid-cols-2 gap-6">
                 <div className="flex items-center gap-3">
                   <HiMapPin className="text-accent-500 flex-shrink-0" size={18} />
                   <span className="text-sm text-gray-400">
@@ -168,9 +168,9 @@ const About = () => {
             viewport={{ once: true }}
           >
             {/* Vertical line */}
-            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary-500/50 via-violet-500/30 to-transparent" />
+            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary-500/50 via-teal-500/30 to-transparent" />
 
-            <div className="space-y-8">
+            <div className="space-y-12">
               {timeline.map((item, index) => (
                 <motion.div
                   key={index}

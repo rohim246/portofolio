@@ -4,7 +4,7 @@ import SectionWrapper from "./SectionWrapper";
 import ProjectCard from "./ProjectCard";
 import { projects, categories } from "../data/projects";
 
-const Projects = () => {
+const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const filteredProjects =
@@ -13,7 +13,7 @@ const Projects = () => {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <SectionWrapper id="projects">
+    <SectionWrapper id="gallery">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-20">
@@ -24,7 +24,7 @@ const Projects = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            Portfolio
+            Galeri
           </motion.span>
           <motion.h2
             className="section-heading"
@@ -33,7 +33,7 @@ const Projects = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Proyek <span className="gradient-text">Unggulan</span>
+            Galeri <span className="gradient-text">Karya</span>
           </motion.h2>
           <motion.p
             className="section-subheading"
@@ -42,8 +42,7 @@ const Projects = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Kumpulan proyek yang menggabungkan teknologi web modern dengan solusi
-            pendidikan inovatif
+            Kumpulan karya dan dokumentasi visual dari perjalanan proyek saya.
           </motion.p>
         </div>
 
@@ -67,7 +66,7 @@ const Projects = () => {
             >
               {activeFilter === cat.id && (
                 <motion.span
-                  layoutId="filter-indicator"
+                  layoutId="gallery-filter-indicator"
                   className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary-500/80 to-teal-500/80"
                   transition={{ type: "spring", stiffness: 350, damping: 30 }}
                 />
@@ -102,7 +101,7 @@ const Projects = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              Tidak ada proyek dalam kategori ini.
+              Tidak ada item dalam kategori ini.
             </motion.p>
           )}
         </AnimatePresence>
@@ -111,4 +110,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default Gallery;

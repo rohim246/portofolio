@@ -7,6 +7,8 @@ const navLinks = [
   { id: "projects", label: "Proyek" },
   { id: "about", label: "Tentang" },
   { id: "skills", label: "Keahlian" },
+  { id: "gallery", label: "Galeri" },
+  { id: "artifacts", label: "Artefak" },
   { id: "contact", label: "Kontak" },
 ];
 
@@ -45,17 +47,19 @@ const Navbar = () => {
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      setActiveSection(id);
+    }
     setMobileOpen(false);
   };
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
           ? "glass-strong shadow-lg shadow-black/20"
           : "bg-transparent"
-      }`}
+        }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -82,11 +86,10 @@ const Navbar = () => {
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
-                  activeSection === link.id
+                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${activeSection === link.id
                     ? "text-white"
                     : "text-gray-400 hover:text-white"
-                }`}
+                  }`}
               >
                 {activeSection === link.id && (
                   <motion.span
@@ -137,11 +140,10 @@ const Navbar = () => {
                 <motion.button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                    activeSection === link.id
+                  className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeSection === link.id
                       ? "text-white bg-white/10"
                       : "text-gray-400 hover:text-white hover:bg-white/5"
-                  }`}
+                    }`}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}

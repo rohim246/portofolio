@@ -162,7 +162,7 @@ const Hero = () => {
         delay={0}
       />
       <FloatingShape
-        className="w-96 h-96 bg-violet-500 -top-10 right-10"
+        className="w-96 h-96 bg-teal-500 -top-10 right-10"
         delay={2}
       />
       <FloatingShape
@@ -184,13 +184,13 @@ const Hero = () => {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center"
+        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center pt-24 md:pt-32 pb-32"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         {/* Badge */}
-        <motion.div variants={itemVariants} className="mb-8">
+        <motion.div variants={itemVariants} className="mb-10">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-gray-300">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             Terbuka untuk kolaborasi & kesempatan baru
@@ -200,7 +200,7 @@ const Hero = () => {
         {/* Greeting */}
         <motion.p
           variants={itemVariants}
-          className="text-lg md:text-xl text-gray-400 mb-4 font-medium"
+          className="text-lg md:text-xl text-gray-400 mb-6 font-medium"
         >
           Assalamu'alaikum, Saya
         </motion.p>
@@ -208,13 +208,13 @@ const Hero = () => {
         {/* Name */}
         <motion.h1
           variants={itemVariants}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-8"
         >
           <span className="gradient-text">Abdur Rohim</span>
         </motion.h1>
 
         {/* Typewriter headline */}
-        <motion.div variants={itemVariants} className="mb-8 h-10 md:h-12">
+        <motion.div variants={itemVariants} className="mb-10 h-10 md:h-12">
           <p className="text-xl md:text-2xl lg:text-3xl font-semibold text-white/80">
             {displayedText}
             {!done && (
@@ -226,7 +226,7 @@ const Hero = () => {
         {/* Subtitle */}
         <motion.p
           variants={itemVariants}
-          className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed text-balance"
+          className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed text-balance"
         >
           Full-Stack Web Developer & Mahasiswa PPG Informatika di Universitas
           Negeri Yogyakarta. Mengintegrasikan teknologi modern ke dalam
@@ -236,7 +236,7 @@ const Hero = () => {
         {/* CTA Buttons */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
         >
           <button
             onClick={() =>
@@ -258,7 +258,7 @@ const Hero = () => {
         {/* Social Links */}
         <motion.div
           variants={itemVariants}
-          className="flex items-center justify-center gap-4"
+          className="flex items-center justify-center gap-6"
         >
           {[
             {

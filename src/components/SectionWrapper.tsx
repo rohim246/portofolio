@@ -26,7 +26,7 @@ const SectionWrapper = ({
     <motion.section
       ref={ref}
       id={id}
-      className={`relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 ${className}`}
+      className={`relative py-24 md:py-32 px-4 sm:px-6 lg:px-8 ${className}`}
       initial={{ opacity: 0, y: 60 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
       transition={{

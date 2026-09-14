@@ -4,11 +4,11 @@
 
 /* ─── Custom Properties ─── */
 :root {
-  --color-primary: #6366f1;
-  --color-violet: #8b5cf6;
-  --color-accent: #06b6d4;
-  --color-dark-900: #0f0d1a;
-  --color-dark-800: #1a1333;
+  --color-primary: #10b981;
+  --color-teal: #14b8a6;
+  --color-accent: #84cc16;
+  --color-dark-900: #022c22;
+  --color-dark-800: #064e3b;
   --glass-bg: rgba(255, 255, 255, 0.04);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -37,7 +37,7 @@
   }
 
   ::selection {
-    background-color: rgba(99, 102, 241, 0.4);
+    background-color: rgba(16, 185, 129, 0.4);
     color: #fff;
   }
 
@@ -51,12 +51,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--color-primary), var(--color-violet));
+    background: linear-gradient(180deg, var(--color-primary), var(--color-teal));
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, var(--color-violet), var(--color-accent));
+    background: linear-gradient(180deg, var(--color-teal), var(--color-accent));
   }
 }
 
@@ -79,7 +79,7 @@
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #818cf8, #a78bfa, #22d3ee);
+    background: linear-gradient(135deg, #34d399, #2dd4bf, #a3e635);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -95,7 +95,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-violet), var(--color-accent));
+    background: linear-gradient(135deg, var(--color-primary), var(--color-teal), var(--color-accent));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -106,21 +106,21 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-      radial-gradient(ellipse at 60% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(20, 184, 166, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 80%, rgba(132, 204, 22, 0.1) 0%, transparent 50%);
     pointer-events: none;
   }
 
   .btn-primary {
     @apply relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-white
            transition-all duration-300 overflow-hidden;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-violet));
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-teal));
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
   }
 
   .btn-primary:hover {
-    box-shadow: 0 6px 30px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 6px 30px rgba(16, 185, 129, 0.5);
     transform: translateY(-2px);
   }
 

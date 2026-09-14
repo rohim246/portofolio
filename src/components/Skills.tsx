@@ -32,7 +32,7 @@ const Skills = () => {
     <SectionWrapper id="skills">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <motion.span
             className="inline-block text-sm font-semibold text-accent-500 tracking-widest uppercase mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -64,7 +64,7 @@ const Skills = () => {
 
         {/* Skill categories grid */}
         <motion.div
-          className="grid md:grid-cols-2 gap-6 lg:gap-8"
+          className="grid md:grid-cols-2 gap-8 lg:gap-12"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -74,11 +74,11 @@ const Skills = () => {
             <motion.div
               key={category.id}
               variants={categoryVariants}
-              className="glass rounded-2xl p-6 lg:p-8 hover:bg-white/[0.06] transition-colors group"
+              className="glass rounded-2xl p-8 lg:p-10 hover:bg-white/[0.06] transition-colors group"
             >
               {/* Category header */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500/20 to-violet-500/20 flex items-center justify-center border border-white/10 group-hover:border-primary-500/30 transition-colors">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500/20 to-teal-500/20 flex items-center justify-center border border-white/10 group-hover:border-primary-500/30 transition-colors">
                   <category.icon className="text-primary-400" size={20} />
                 </div>
                 <h3 className="text-lg font-bold text-white">
@@ -88,7 +88,7 @@ const Skills = () => {
 
               {/* Skill tags */}
               <motion.div
-                className="flex flex-wrap gap-3"
+                className="flex flex-wrap gap-4"
                 variants={{
                   hidden: {},
                   visible: {

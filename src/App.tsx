@@ -5,6 +5,8 @@ import About from "./components/About.tsx";
 import Skills from "./components/Skills.tsx";
 import Contact from "./components/Contact.tsx";
 import Footer from "./components/Footer.tsx";
+import Gallery from "./components/Gallery.tsx";
+import Artifacts from "./components/Artifacts.tsx";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Projects />
         <About />
         <Skills />
+        <Gallery />
+        <Artifacts />
         <Contact />
       </main>
 

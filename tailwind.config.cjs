@@ -9,29 +9,29 @@ module.exports = {
       },
       colors: {
         primary: {
-          400: "#818cf8",
-          500: "#6366f1",
-          600: "#4f46e5",
+          400: "#34d399",
+          500: "#10b981",
+          600: "#059669",
         },
-        violet: {
-          400: "#a78bfa",
-          500: "#8b5cf6",
+        teal: {
+          400: "#2dd4bf",
+          500: "#14b8a6",
         },
         accent: {
-          400: "#22d3ee",
-          500: "#06b6d4",
+          400: "#a3e635",
+          500: "#84cc16",
         },
         dark: {
-          900: "#0f0d1a",
-          800: "#1a1333",
-          700: "#241e3a",
-          600: "#2e2650",
+          900: "#022c22",
+          800: "#064e3b",
+          700: "#065f46",
+          600: "#047857",
         },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "hero-gradient":
-          "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%)",
+          "linear-gradient(135deg, #10b981 0%, #14b8a6 50%, #84cc16 100%)",
       },
       animation: {
         "float": "float 6s ease-in-out infinite",

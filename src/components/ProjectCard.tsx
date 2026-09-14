@@ -68,7 +68,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
           {/* Category badge */}
           <div className="absolute top-4 left-4">
             <span
-              className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${categoryColor[project.category] ?? "from-primary-500 to-violet-500"}`}
+              className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${categoryColor[project.category] ?? "from-primary-500 to-teal-500"}`}
             >
               {project.category === "web"
                 ? "Web App"

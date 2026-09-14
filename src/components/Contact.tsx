@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import SectionWrapper from "./SectionWrapper";
 import {
   HiEnvelope,
-  HiPhone,
   HiPaperAirplane,
   HiCheckCircle,
 } from "react-icons/hi2";
@@ -30,13 +29,6 @@ const socialLinks = [
     value: "rohim.klaten246@gmail.com",
     href: "mailto:rohim.klaten246@gmail.com",
     color: "from-red-500 to-orange-500",
-  },
-  {
-    icon: HiPhone,
-    label: "Telepon",
-    value: "081259763192",
-    href: "tel:081259763192",
-    color: "from-emerald-500 to-teal-500",
   },
   {
     icon: FaLinkedin,
@@ -142,7 +134,7 @@ const Contact = () => {
     <SectionWrapper id="contact">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <motion.span
             className="inline-block text-sm font-semibold text-accent-500 tracking-widest uppercase mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -172,10 +164,10 @@ const Contact = () => {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Social cards */}
           <motion.div
-            className="lg:col-span-2 space-y-4"
+            className="lg:col-span-2 space-y-6"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -225,11 +217,11 @@ const Contact = () => {
           >
             <form
               onSubmit={handleSubmit}
-              className="glass rounded-2xl p-6 lg:p-8 space-y-5"
+              className="glass rounded-2xl p-6 lg:p-8 space-y-8"
               noValidate
             >
               {/* Name & Email row */}
-              <div className="grid sm:grid-cols-2 gap-5">
+              <div className="grid sm:grid-cols-2 gap-6">
                 <div>
                   <label
                     htmlFor="contact-name"
