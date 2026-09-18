@@ -1,16 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiBars3, HiXMark } from "react-icons/hi2";
-
-const navLinks = [
-  { id: "home", label: "Home" },
-  { id: "projects", label: "Proyek" },
-  { id: "about", label: "Tentang" },
-  { id: "skills", label: "Keahlian" },
-  { id: "gallery", label: "Galeri" },
-  { id: "artifacts", label: "Artefak" },
-  { id: "contact", label: "Kontak" },
-];
+import { navbarData } from "./navbar.data";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -26,7 +17,7 @@ const Navbar = () => {
 
   /* ── Active section via IntersectionObserver ── */
   useEffect(() => {
-    const ids = navLinks.map((l) => l.id);
+    const ids = navbarData.navLinks.map((l) => l.id);
     const observers: IntersectionObserver[] = [];
 
     ids.forEach((id) => {
@@ -73,16 +64,16 @@ const Navbar = () => {
             aria-label="Go to top"
           >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-primary-500/25 group-hover:shadow-primary-500/50 transition-shadow duration-300">
-              AR
+              {navbarData.logo.initials}
             </div>
             <span className="hidden sm:block font-semibold text-white tracking-tight">
-              Abdur Rohim
+              {navbarData.logo.fullName}
             </span>
           </button>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
+            {navbarData.navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
@@ -106,10 +97,10 @@ const Navbar = () => {
           {/* CTA */}
           <div className="hidden md:block">
             <button
-              onClick={() => scrollTo("contact")}
+              onClick={() => scrollTo(navbarData.ctaButton.href.replace("#", ""))}
               className="btn-primary text-sm !px-5 !py-2.5"
             >
-              Hubungi Saya
+              {navbarData.ctaButton.label}
             </button>
           </div>
 
@@ -136,7 +127,7 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="px-4 py-4 space-y-1">
-              {navLinks.map((link, i) => (
+              {navbarData.navLinks.map((link, i) => (
                 <motion.button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
@@ -152,13 +143,13 @@ const Navbar = () => {
                 </motion.button>
               ))}
               <motion.button
-                onClick={() => scrollTo("contact")}
+                onClick={() => scrollTo(navbarData.ctaButton.href.replace("#", ""))}
                 className="btn-primary w-full justify-center text-sm mt-3"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.05 }}
+                transition={{ delay: navbarData.navLinks.length * 0.05 }}
               >
-                Hubungi Saya
+                {navbarData.ctaButton.label}
               </motion.button>
             </div>
           </motion.div>

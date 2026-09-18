@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HiEnvelope, HiChevronUp } from "react-icons/hi2";
+import { HiChevronUp } from "react-icons/hi2";
+import { footerData } from "./footer.data";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -25,35 +25,19 @@ const Footer = () => {
           {/* Logo + credit */}
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center font-bold text-white text-xs">
-              AR
+              {footerData.logo.initials}
             </div>
             <div>
-              <p className="text-sm text-white font-medium">Abdur Rohim</p>
+              <p className="text-sm text-white font-medium">{footerData.logo.name}</p>
               <p className="text-xs text-gray-500">
-                © {currentYear} — Dibuat dengan ❤️ dan React
+                © {currentYear} — {footerData.logo.copyright}
               </p>
             </div>
           </div>
 
           {/* Social icons */}
           <div className="flex items-center gap-3">
-            {[
-              {
-                icon: FaGithub,
-                href: "https://github.com/rohim246",
-                label: "GitHub",
-              },
-              {
-                icon: FaLinkedin,
-                href: "https://linkedin.com/in/abdur-rohim",
-                label: "LinkedIn",
-              },
-              {
-                icon: HiEnvelope,
-                href: "mailto:rohim.klaten246@gmail.com",
-                label: "Email",
-              },
-            ].map((social) => (
+            {footerData.socialLinks.map((social) => (
               <a
                 key={social.label}
                 href={social.href}

@@ -1,12 +1,8 @@
 import { useState, type FormEvent, type ChangeEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import SectionWrapper from "./SectionWrapper";
-import {
-  HiEnvelope,
-  HiPaperAirplane,
-  HiCheckCircle,
-} from "react-icons/hi2";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import SectionWrapper from "../SectionWrapper";
+import { HiPaperAirplane, HiCheckCircle } from "react-icons/hi2";
+import { contactData } from "./contact.data";
 
 interface FormData {
   name: string;
@@ -22,30 +18,6 @@ interface FormErrors {
   message?: string;
 }
 
-const socialLinks = [
-  {
-    icon: HiEnvelope,
-    label: "Email",
-    value: "rohim.klaten246@gmail.com",
-    href: "mailto:rohim.klaten246@gmail.com",
-    color: "from-red-500 to-orange-500",
-  },
-  {
-    icon: FaLinkedin,
-    label: "LinkedIn",
-    value: "abdur-rohim",
-    href: "https://linkedin.com/in/abdur-rohim",
-    color: "from-blue-500 to-blue-600",
-  },
-  {
-    icon: FaGithub,
-    label: "GitHub",
-    value: "rohim246",
-    href: "https://github.com/rohim246",
-    color: "from-gray-600 to-gray-700",
-  },
-];
-
 const Contact = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -60,17 +32,17 @@ const Contact = () => {
 
   const validate = (data: FormData): FormErrors => {
     const errs: FormErrors = {};
-    if (!data.name.trim()) errs.name = "Nama wajib diisi";
+    if (!data.name.trim()) errs.name = contactData.formFields.name.errorMessages.required;
     if (!data.email.trim()) {
-      errs.email = "Email wajib diisi";
+      errs.email = contactData.formFields.email.errorMessages.required;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-      errs.email = "Format email tidak valid";
+      errs.email = contactData.formFields.email.errorMessages.invalid;
     }
-    if (!data.subject.trim()) errs.subject = "Subjek wajib diisi";
+    if (!data.subject.trim()) errs.subject = contactData.formFields.subject.errorMessages.required;
     if (!data.message.trim()) {
-      errs.message = "Pesan wajib diisi";
+      errs.message = contactData.formFields.message.errorMessages.required;
     } else if (data.message.trim().length < 10) {
-      errs.message = "Pesan minimal 10 karakter";
+      errs.message = contactData.formFields.message.errorMessages.minLength;
     }
     return errs;
   };
@@ -141,7 +113,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Kontak
+            {contactData.subtitle}
           </motion.span>
           <motion.h2
             className="section-heading"
@@ -150,7 +122,7 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            Mari <span className="gradient-text">Terhubung</span>
+            {contactData.title}
           </motion.h2>
           <motion.p
             className="section-subheading"
@@ -159,8 +131,7 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            Tertarik untuk berkolaborasi atau punya pertanyaan? Jangan ragu
-            untuk menghubungi saya
+            {contactData.description}
           </motion.p>
         </div>
 
@@ -173,7 +144,7 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            {socialLinks.map((link, index) => (
+            {contactData.socialLinks.map((link, index) => (
               <motion.a
                 key={link.label}
                 href={link.href}
@@ -227,13 +198,13 @@ const Contact = () => {
                     htmlFor="contact-name"
                     className="block text-sm font-medium text-gray-300 mb-2"
                   >
-                    Nama
+                    {contactData.formFields.name.label}
                   </label>
                   <input
                     id="contact-name"
                     name="name"
                     type="text"
-                    placeholder="Nama lengkap"
+                    placeholder={contactData.formFields.name.placeholder}
                     value={formData.name}
                     onChange={handleChange}
                     onBlur={() => handleBlur("name")}
@@ -258,13 +229,13 @@ const Contact = () => {
                     htmlFor="contact-email"
                     className="block text-sm font-medium text-gray-300 mb-2"
                   >
-                    Email
+                    {contactData.formFields.email.label}
                   </label>
                   <input
                     id="contact-email"
                     name="email"
                     type="email"
-                    placeholder="email@contoh.com"
+                    placeholder={contactData.formFields.email.placeholder}
                     value={formData.email}
                     onChange={handleChange}
                     onBlur={() => handleBlur("email")}
@@ -292,13 +263,13 @@ const Contact = () => {
                   htmlFor="contact-subject"
                   className="block text-sm font-medium text-gray-300 mb-2"
                 >
-                  Subjek
+                  {contactData.formFields.subject.label}
                 </label>
                 <input
                   id="contact-subject"
                   name="subject"
                   type="text"
-                  placeholder="Topik pesan"
+                  placeholder={contactData.formFields.subject.placeholder}
                   value={formData.subject}
                   onChange={handleChange}
                   onBlur={() => handleBlur("subject")}
@@ -324,13 +295,13 @@ const Contact = () => {
                   htmlFor="contact-message"
                   className="block text-sm font-medium text-gray-300 mb-2"
                 >
-                  Pesan
+                  {contactData.formFields.message.label}
                 </label>
                 <textarea
                   id="contact-message"
                   name="message"
                   rows={5}
-                  placeholder="Tulis pesan Anda di sini..."
+                  placeholder={contactData.formFields.message.placeholder}
                   value={formData.message}
                   onChange={handleChange}
                   onBlur={() => handleBlur("message")}
@@ -367,7 +338,7 @@ const Contact = () => {
                       exit={{ opacity: 0 }}
                     >
                       <HiCheckCircle size={20} />
-                      Pesan Terkirim!
+                      {contactData.submitButton.success}
                     </motion.span>
                   ) : isSubmitting ? (
                     <motion.span
@@ -386,7 +357,7 @@ const Contact = () => {
                           ease: "linear",
                         }}
                       />
-                      Mengirim...
+                      {contactData.submitButton.loading}
                     </motion.span>
                   ) : (
                     <motion.span
@@ -397,7 +368,7 @@ const Contact = () => {
                       exit={{ opacity: 0 }}
                     >
                       <HiPaperAirplane size={18} />
-                      Kirim Pesan
+                      {contactData.submitButton.default}
                     </motion.span>
                   )}
                 </AnimatePresence>

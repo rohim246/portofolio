@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import SectionWrapper from "./SectionWrapper";
-import ProjectCard from "./ProjectCard";
-import { projects, categories } from "../data/projects";
+import SectionWrapper from "../SectionWrapper";
+import ProjectCard from "../ProjectCard/ProjectCard";
+import { projects, categories, gallerySectionData } from "./gallery.data";
 
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -24,7 +24,7 @@ const Gallery = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            Galeri
+            {gallerySectionData.subtitle}
           </motion.span>
           <motion.h2
             className="section-heading"
@@ -33,7 +33,7 @@ const Gallery = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Galeri <span className="gradient-text">Karya</span>
+            {gallerySectionData.title}
           </motion.h2>
           <motion.p
             className="section-subheading"
@@ -42,7 +42,7 @@ const Gallery = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Kumpulan karya dan dokumentasi visual dari perjalanan proyek saya.
+            {gallerySectionData.description}
           </motion.p>
         </div>
 

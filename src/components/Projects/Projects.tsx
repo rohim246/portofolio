@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import SectionWrapper from "./SectionWrapper";
-import ProjectCard from "./ProjectCard";
-import { projects, categories } from "../data/projects";
+import SectionWrapper from "../SectionWrapper";
+import ProjectCard from "../ProjectCard/ProjectCard";
+import { projects, categories, projectsSectionData } from "./projects.data";
 
-const Artifacts = () => {
+const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const filteredProjects =
@@ -13,7 +13,7 @@ const Artifacts = () => {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <SectionWrapper id="artifacts">
+    <SectionWrapper id="projects">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-20">
@@ -24,7 +24,7 @@ const Artifacts = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            Artefak
+            {projectsSectionData.subtitle}
           </motion.span>
           <motion.h2
             className="section-heading"
@@ -33,7 +33,7 @@ const Artifacts = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Koleksi <span className="gradient-text">Artefak</span>
+            {projectsSectionData.title}
           </motion.h2>
           <motion.p
             className="section-subheading"
@@ -42,7 +42,7 @@ const Artifacts = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Dokumen, sertifikat, dan artefak penting lainnya dari proyek-proyek saya.
+            {projectsSectionData.description}
           </motion.p>
         </div>
 
@@ -66,7 +66,7 @@ const Artifacts = () => {
             >
               {activeFilter === cat.id && (
                 <motion.span
-                  layoutId="artifacts-filter-indicator"
+                  layoutId="filter-indicator"
                   className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary-500/80 to-teal-500/80"
                   transition={{ type: "spring", stiffness: 350, damping: 30 }}
                 />
@@ -101,7 +101,7 @@ const Artifacts = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              Tidak ada item dalam kategori ini.
+              Tidak ada proyek dalam kategori ini.
             </motion.p>
           )}
         </AnimatePresence>
@@ -110,4 +110,4 @@ const Artifacts = () => {
   );
 };
 
-export default Artifacts;
+export default Projects;

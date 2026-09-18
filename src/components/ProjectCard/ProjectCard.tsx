@@ -1,7 +1,20 @@
 import { useState, forwardRef } from "react";
 import { motion } from "framer-motion";
-import type { Project } from "../data/projects";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { categoryColor, categoryLabels } from "./project-card.data";
+
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  category: "web" | "education" | "tools";
+  image: string;
+  techStack: string[];
+  liveUrl?: string;
+  sourceUrl?: string;
+  featured: boolean;
+}
 
 interface ProjectCardProps {
   project: Project;
@@ -23,12 +36,6 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
     const handleMouseLeave = () => {
       setIsHovered(false);
       setTilt({ x: 0, y: 0 });
-    };
-
-    const categoryColor: Record<string, string> = {
-      web: "from-blue-500 to-cyan-500",
-      education: "from-emerald-500 to-teal-500",
-      tools: "from-orange-500 to-amber-500",
     };
 
     return (
@@ -70,11 +77,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
             <span
               className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${categoryColor[project.category] ?? "from-primary-500 to-teal-500"}`}
             >
-              {project.category === "web"
-                ? "Web App"
-                : project.category === "education"
-                  ? "Pendidikan"
-                  : "Tools"}
+              {categoryLabels[project.category] ?? "Tools"}
             </span>
           </div>
 

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { HiArrowDown, HiDocumentText } from "react-icons/hi2";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { heroData } from "./hero.data";
 
 /* ── Animated floating shapes ── */
 const FloatingShape = ({
@@ -118,8 +117,7 @@ const Hero = () => {
     return () => window.removeEventListener("mousemove", handleMouse);
   }, []);
 
-  const headline = "Calon Guru Profesional Informatika";
-  const { displayedText, done } = useTypewriter(headline, 40, 1200);
+  const { displayedText, done } = useTypewriter(heroData.headline, 40, 1200);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -193,7 +191,7 @@ const Hero = () => {
         <motion.div variants={itemVariants} className="mb-10">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-gray-300">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            Terbuka untuk kolaborasi & kesempatan baru
+            {heroData.badgeText}
           </span>
         </motion.div>
 
@@ -202,7 +200,7 @@ const Hero = () => {
           variants={itemVariants}
           className="text-lg md:text-xl text-gray-400 mb-6 font-medium"
         >
-          Assalamu'alaikum, Saya
+          {heroData.greeting}
         </motion.p>
 
         {/* Name */}
@@ -210,7 +208,7 @@ const Hero = () => {
           variants={itemVariants}
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-8"
         >
-          <span className="gradient-text">Abdur Rohim</span>
+          <span className="gradient-text">{heroData.name}</span>
         </motion.h1>
 
         {/* Typewriter headline */}
@@ -228,9 +226,7 @@ const Hero = () => {
           variants={itemVariants}
           className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed text-balance"
         >
-          Full-Stack Web Developer & Mahasiswa PPG Informatika di Universitas
-          Negeri Yogyakarta. Mengintegrasikan teknologi modern ke dalam
-          pendidikan yang inklusif dan inovatif.
+          {heroData.subtitle}
         </motion.p>
 
         {/* CTA Buttons */}
@@ -238,21 +234,20 @@ const Hero = () => {
           variants={itemVariants}
           className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
         >
-          <button
-            onClick={() =>
-              document
-                .getElementById("projects")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="btn-primary"
-          >
-            Lihat Proyek Saya
-            <HiArrowDown className="animate-bounce" />
-          </button>
-          <a href="#contact" className="btn-secondary">
-            <HiDocumentText />
-            Hubungi Saya
-          </a>
+          {heroData.ctaButtons.map((btn, idx) => (
+            <a
+              key={idx}
+              href={btn.href}
+              className={`btn-${btn.variant} ${btn.variant === "primary" ? "" : ""}`}
+              onClick={btn.variant === "primary" ? (e: React.MouseEvent) => {
+                e.preventDefault();
+                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+              } : undefined}
+            >
+              {btn.label}
+              {btn.icon && <btn.icon className={btn.variant === "primary" ? "animate-bounce" : ""} />}
+            </a>
+          ))}
         </motion.div>
 
         {/* Social Links */}
@@ -260,18 +255,7 @@ const Hero = () => {
           variants={itemVariants}
           className="flex items-center justify-center gap-6"
         >
-          {[
-            {
-              icon: FaGithub,
-              href: "https://github.com/rohim246",
-              label: "GitHub",
-            },
-            {
-              icon: FaLinkedin,
-              href: "https://linkedin.com/in/abdur-rohim",
-              label: "LinkedIn",
-            },
-          ].map((social) => (
+          {heroData.socialLinks.map((social) => (
             <a
               key={social.label}
               href={social.href}

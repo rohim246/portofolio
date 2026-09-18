@@ -1,12 +1,11 @@
-import Navbar from "./components/Navbar.tsx";
-import Hero from "./components/Hero.tsx";
-import Projects from "./components/Projects.tsx";
-import About from "./components/About.tsx";
-import Skills from "./components/Skills.tsx";
-import Contact from "./components/Contact.tsx";
-import Footer from "./components/Footer.tsx";
-import Gallery from "./components/Gallery.tsx";
-import Artifacts from "./components/Artifacts.tsx";
+import Navbar from "./components/Navbar/Navbar.tsx";
+import Hero from "./components/Hero/Hero.tsx";
+import Projects from "./components/Projects/Projects.tsx";
+import About from "./components/About/About.tsx";
+import Contact from "./components/Contact/Contact.tsx";
+import Footer from "./components/Footer/Footer.tsx";
+import Gallery from "./components/Gallery/Gallery.tsx";
+import Artifacts from "./components/Artifacts/Artifacts.tsx";
 
 function App() {
   return (
@@ -20,7 +19,6 @@ function App() {
         <Hero />
         <Projects />
         <About />
-        <Skills />
         <Gallery />
         <Artifacts />
         <Contact />

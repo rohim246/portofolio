@@ -1,41 +1,6 @@
 import { motion } from "framer-motion";
-import SectionWrapper from "./SectionWrapper";
-import {
-  HiAcademicCap,
-  HiMapPin,
-  HiBriefcase,
-  HiSparkles,
-} from "react-icons/hi2";
-
-const timeline = [
-  {
-    year: "2024 – Sekarang",
-    title: "Mahasiswa PPG Informatika",
-    institution: "Universitas Negeri Yogyakarta",
-    description:
-      "Menjalani Pendidikan Profesi Guru (PPG) untuk menjadi guru informatika profesional. Mengasah kemampuan pedagogik, merancang pembelajaran inovatif, dan memperdalam kompetensi teknologi pendidikan.",
-    icon: HiAcademicCap,
-    color: "from-primary-500 to-teal-500",
-  },
-  {
-    year: "2024",
-    title: "Praktik Pengalaman Lapangan (PPL)",
-    institution: "SMA N 11 Yogyakarta",
-    description:
-      "Melaksanakan praktik mengajar langsung di kelas. Mengembangkan media pembelajaran interaktif, menerapkan asesmen berbasis teknologi, dan mengelola kelas dengan pendekatan yang inklusif dan humanis.",
-    icon: HiBriefcase,
-    color: "from-emerald-500 to-teal-500",
-  },
-  {
-    year: "2020 – 2024",
-    title: "Sarjana Pendidikan Informatika",
-    institution: "Universitas Negeri Yogyakarta",
-    description:
-      "Membangun fondasi kuat di bidang ilmu komputer dan pedagogi. Aktif mengeksplorasi pengembangan web modern, berkontribusi dalam proyek penelitian, dan mengikuti berbagai kompetisi teknologi.",
-    icon: HiAcademicCap,
-    color: "from-orange-500 to-amber-500",
-  },
-];
+import SectionWrapper from "../SectionWrapper";
+import { aboutData, type TimelineItem } from "./about.data";
 
 const About = () => {
   const containerVariants = {
@@ -66,7 +31,7 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Tentang
+            {aboutData.subtitle}
           </motion.span>
           <motion.h2
             className="section-heading"
@@ -75,7 +40,7 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            Cerita <span className="gradient-text">Saya</span>
+            {aboutData.title}
           </motion.h2>
         </div>
 
@@ -94,45 +59,28 @@ const About = () => {
             >
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-teal-500 flex items-center justify-center">
-                  <HiSparkles className="text-white" size={22} />
+                  <aboutData.profile.icon className="text-white" size={22} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white text-lg">Abdur Rohim</h3>
-                  <p className="text-sm text-gray-400">
-                    Calon Guru &amp; Developer
-                  </p>
+                  <h3 className="font-bold text-white text-lg">{aboutData.profile.name}</h3>
+                  <p className="text-sm text-gray-400">{aboutData.profile.role}</p>
                 </div>
               </div>
 
-              <p className="text-gray-300 leading-relaxed mb-4 text-balance">
-                Saya percaya bahwa pendidikan yang baik harus berjalan seiring
-                dengan perkembangan teknologi. Sebagai calon guru informatika
-                sekaligus full-stack web developer, saya berkomitmen untuk
-                menciptakan pengalaman belajar yang bermakna melalui solusi
-                teknologi yang inovatif.
-              </p>
-              <p className="text-gray-300 leading-relaxed text-balance">
-                Misi saya adalah menjadi guru yang profesional, inovatif,
-                adaptif, dan humanis — mampu memahami kebutuhan peserta didik,
-                menciptakan pembelajaran yang nyaman dan inklusif, serta terus
-                mengembangkan kompetensi diri.
-              </p>
+              {aboutData.profile.description.map((paragraph, idx) => (
+                <p key={idx} className="text-gray-300 leading-relaxed mb-4 text-balance">
+                  {paragraph}
+                </p>
+              ))}
 
               {/* Quick facts */}
               <div className="mt-6 pt-6 border-t border-white/10 grid grid-cols-2 gap-6">
-                <div className="flex items-center gap-3">
-                  <HiMapPin className="text-accent-500 flex-shrink-0" size={18} />
-                  <span className="text-sm text-gray-400">
-                    Klaten, Jawa Tengah
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <HiAcademicCap
-                    className="text-primary-400 flex-shrink-0"
-                    size={18}
-                  />
-                  <span className="text-sm text-gray-400">PPG UNY</span>
-                </div>
+                {aboutData.profile.quickFacts.map((fact, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <fact.icon className="text-accent-500 flex-shrink-0" size={18} />
+                    <span className="text-sm text-gray-400">{fact.label}</span>
+                  </div>
+                ))}
               </div>
             </motion.div>
 
@@ -141,11 +89,7 @@ const About = () => {
               variants={itemVariants}
               className="grid grid-cols-3 gap-4"
             >
-              {[
-                { value: "5+", label: "Proyek" },
-                { value: "PPL", label: "SMA N 11 YK" },
-                { value: "∞", label: "Semangat" },
-              ].map((stat) => (
+              {aboutData.stats.map((stat) => (
                 <div
                   key={stat.label}
                   className="glass rounded-xl p-4 text-center hover:bg-white/[0.06] transition-colors"
@@ -171,7 +115,7 @@ const About = () => {
             <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary-500/50 via-teal-500/30 to-transparent" />
 
             <div className="space-y-12">
-              {timeline.map((item, index) => (
+              {aboutData.timeline.map((item: TimelineItem, index) => (
                 <motion.div
                   key={index}
                   variants={itemVariants}
