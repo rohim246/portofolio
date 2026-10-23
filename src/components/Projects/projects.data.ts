@@ -3,7 +3,7 @@ export interface Project {
   title: string;
   description: string;
   longDescription: string;
-  category: "web" | "education" | "tools";
+  category: "web" | "education";
   image: string;
   techStack: string[];
   liveUrl?: string;
@@ -37,29 +37,6 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: "code-playground",
-    title: "Code Playground Edu",
-    description: "Editor kode online untuk pembelajaran pemrograman dengan fitur live preview, template, dan panduan interaktif.",
-    longDescription: "Code playground yang dirancang khusus untuk konteks pendidikan. Siswa dapat menulis dan menjalankan kode HTML, CSS, dan JavaScript secara langsung di browser. Dilengkapi dengan template pembelajaran bertahap dan sistem hint untuk membantu proses belajar.",
-    category: "tools",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
-    techStack: ["React", "Monaco Editor", "Web Workers", "Firebase"],
-    liveUrl: "#",
-    sourceUrl: "https://github.com/rohim246",
-    featured: true,
-  },
-  {
-    id: "portfolio-generator",
-    title: "Student Portfolio Generator",
-    description: "Alat bantu siswa membuat portfolio digital dengan template modern dan ekspor PDF otomatis.",
-    longDescription: "Aplikasi web yang memudahkan siswa dalam membuat portfolio digital profesional. Menyediakan berbagai template modern, drag-and-drop editor, dan fitur ekspor ke PDF. Dirancang untuk membantu siswa menampilkan karya terbaik mereka.",
-    category: "tools",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
-    techStack: ["Vue.js", "Pinia", "jsPDF", "Tailwind CSS"],
-    sourceUrl: "https://github.com/rohim246",
-    featured: false,
-  },
-  {
     id: "kurikulum-mapper",
     title: "Pembelajaran Informatika",
     description: "Penerapan kurikulum informatika dengan Capaian Pembelajaran.",
@@ -87,7 +64,6 @@ export const categories = [
   { id: "all", label: "Semua" },
   { id: "web", label: "Web App" },
   { id: "education", label: "Pendidikan" },
-  { id: "tools", label: "Tools" },
 ] as const;
 
 export const projectsSectionData = {
