@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { HiBars3, HiXMark } from "react-icons/hi2";
+import { HiBars3, HiChevronDown, HiXMark } from "react-icons/hi2";
 import { navbarData } from "./navbar.data";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   /* ── Scroll detection ── */
@@ -17,7 +19,9 @@ const Navbar = () => {
 
   /* ── Active section via IntersectionObserver ── */
   useEffect(() => {
-    const ids = navbarData.navLinks.map((l) => l.id);
+    const ids = navbarData.navLinks.flatMap((link) =>
+      link.children ? link.children.map((child) => child.id) : [link.id],
+    );
     const observers: IntersectionObserver[] = [];
 
     ids.forEach((id) => {
@@ -43,7 +47,13 @@ const Navbar = () => {
       setActiveSection(id);
     }
     setMobileOpen(false);
+    setOpenDropdown(null);
+    setMobileDropdownOpen(false);
   };
+
+  const isLinkActive = (link: (typeof navbarData.navLinks)[number]) =>
+    link.id === activeSection ||
+    Boolean(link.children?.some((child) => child.id === activeSection));
 
   return (
     <motion.nav
@@ -73,25 +83,86 @@ const Navbar = () => {
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-1">
-            {navbarData.navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollTo(link.id)}
-                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${activeSection === link.id
-                    ? "text-white"
-                    : "text-gray-400 hover:text-white"
-                  }`}
-              >
-                {activeSection === link.id && (
-                  <motion.span
-                    layoutId="nav-indicator"
-                    className="absolute inset-0 rounded-lg bg-white/10"
-                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{link.label}</span>
-              </button>
-            ))}
+            {navbarData.navLinks.map((link) => {
+              const active = isLinkActive(link);
+              if (link.children) {
+                return (
+                  <div
+                    key={link.id}
+                    className="relative"
+                    onMouseEnter={() => setOpenDropdown(link.id)}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                    onBlur={(event) => {
+                      if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                        setOpenDropdown(null);
+                      }
+                    }}
+                  >
+                    <button
+                      type="button"
+                      aria-haspopup="true"
+                      aria-expanded={openDropdown === link.id}
+                      onClick={() => setOpenDropdown(link.id)}
+                      onFocus={() => setOpenDropdown(link.id)}
+                      className={`relative flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${active ? "text-white" : "text-gray-400 hover:text-white"}`}
+                    >
+                      {active && (
+                        <motion.span
+                          layoutId="nav-indicator"
+                          className="absolute inset-0 rounded-lg bg-white/10"
+                          transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                        />
+                      )}
+                      <span className="relative z-10">{link.label}</span>
+                      <HiChevronDown
+                        className={`relative z-10 transition-transform ${openDropdown === link.id ? "rotate-180" : ""}`}
+                        size={14}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {openDropdown === link.id && (
+                        <motion.div
+                          className="absolute left-0 top-full z-50 w-44 pt-2"
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 6 }}
+                          transition={{ duration: 0.16 }}
+                        >
+                          <div className="glass-strong rounded-lg p-1 shadow-xl">
+                            {link.children.map((child) => (
+                              <button
+                                key={child.id}
+                                onClick={() => scrollTo(child.id)}
+                                className={`block w-full rounded-md px-3 py-2 text-left text-sm transition-colors ${activeSection === child.id ? "bg-white/10 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white"}`}
+                              >
+                                {child.label}
+                              </button>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => scrollTo(link.id)}
+                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${active ? "text-white" : "text-gray-400 hover:text-white"}`}
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="nav-indicator"
+                      className="absolute inset-0 rounded-lg bg-white/10"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{link.label}</span>
+                </button>
+              );
+            })}
           </div>
 
           {/* CTA */}
@@ -127,21 +198,65 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="px-4 py-4 space-y-1">
-              {navbarData.navLinks.map((link, i) => (
-                <motion.button
-                  key={link.id}
-                  onClick={() => scrollTo(link.id)}
-                  className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeSection === link.id
-                      ? "text-white bg-white/10"
-                      : "text-gray-400 hover:text-white hover:bg-white/5"
-                    }`}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  {link.label}
-                </motion.button>
-              ))}
+              {navbarData.navLinks.map((link, i) => {
+                const active = isLinkActive(link);
+                if (link.children) {
+                  return (
+                    <motion.div
+                      key={link.id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                        aria-expanded={mobileDropdownOpen}
+                        className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors ${active ? "bg-white/10 text-white" : "text-gray-400 hover:bg-white/5 hover:text-white"}`}
+                      >
+                        {link.label}
+                        <HiChevronDown
+                          className={`transition-transform ${mobileDropdownOpen ? "rotate-180" : ""}`}
+                          size={16}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {mobileDropdownOpen && (
+                          <motion.div
+                            className="ml-4 mt-1 border-l border-white/10 pl-3"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                          >
+                            {link.children.map((child) => (
+                              <button
+                                key={child.id}
+                                onClick={() => scrollTo(child.id)}
+                                className={`block w-full rounded-lg px-4 py-2.5 text-left text-sm transition-colors ${activeSection === child.id ? "text-white" : "text-gray-400 hover:text-white"}`}
+                              >
+                                {child.label}
+                              </button>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                }
+
+                return (
+                  <motion.button
+                    key={link.id}
+                    onClick={() => scrollTo(link.id)}
+                    className={`block w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors ${active ? "bg-white/10 text-white" : "text-gray-400 hover:bg-white/5 hover:text-white"}`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                  >
+                    {link.label}
+                  </motion.button>
+                );
+              })}
               <motion.button
                 onClick={() => scrollTo(navbarData.ctaButton.href.replace("#", ""))}
                 className="btn-primary w-full justify-center text-sm mt-3"

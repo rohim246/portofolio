@@ -118,6 +118,7 @@ const About = () => {
               {aboutData.timeline.map((item: TimelineItem, index) => (
                 <motion.div
                   key={index}
+                  id={item.id}
                   variants={itemVariants}
                   className="relative pl-16"
                 >

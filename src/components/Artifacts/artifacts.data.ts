@@ -55,7 +55,7 @@ export const categories = [
 ] as const;
 
 export const artifactsSectionData = {
-  subtitle: "Artefak",
+  subtitle: "Seminar",
   title: "Refleksi Mata Kuliah",
   description: "Kumpulan dokumen refleksi mata kuliah program PPG Informatika UNY",
 };

@@ -10,6 +10,7 @@ export interface Project {
   longDescription: string;
   category: "web" | "education" | "education-semester-2" | "ppg-learning-reflection" | "tools";
   image: string;
+  video?: string;
   techStack: string[];
   liveUrl?: string;
   sourceUrl?: string;
@@ -63,14 +64,28 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
         >
         {/* Image */}
         <div className="relative h-48 sm:h-52 overflow-hidden">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            loading="lazy"
-          />
+          {project.video ? (
+            <video
+              src={project.video}
+              poster={project.image}
+              controls
+              playsInline
+              preload="metadata"
+              aria-label={project.title}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+            />
+          )}
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent" />
+          {!project.video && (
+            <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent" />
+          )}
 
           {/* Category badge */}
           <div className="absolute top-4 left-4">
@@ -82,7 +97,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
           </div>
 
           {/* Hover overlay with links */}
-          <motion.div
+          {!project.video && <motion.div
             className="absolute inset-0 bg-dark-900/80 backdrop-blur-sm flex items-center justify-center gap-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: isHovered ? 1 : 0 }}
@@ -110,7 +125,7 @@ const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
                 <FaGithub size={18} />
               </a>
             )}
-          </motion.div>
+          </motion.div>}
         </div>
 
         {/* Content */}

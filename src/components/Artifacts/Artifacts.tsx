@@ -13,7 +13,7 @@ const Artifacts = () => {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <SectionWrapper id="artifacts">
+    <SectionWrapper id="seminar">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-20">

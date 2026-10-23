@@ -224,9 +224,17 @@ const Hero = () => {
         {/* Subtitle */}
         <motion.p
           variants={itemVariants}
-          className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed text-balance"
+          className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-4 leading-relaxed text-balance"
         >
           {heroData.subtitle}
+        </motion.p>
+
+        {/* Description */}
+        <motion.p
+          variants={itemVariants}
+          className="text-sm md:text-base text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed text-balance"
+        >
+          {heroData.description}
         </motion.p>
 
         {/* CTA Buttons */}

@@ -23,6 +23,7 @@ export const aboutData = {
   ],
   timeline: [
     {
+      id: "ppg",
       year: "2026",
       title: "Mahasiswa PPG Informatika",
       institution: "Universitas Negeri Yogyakarta",
@@ -31,6 +32,7 @@ export const aboutData = {
       color: "from-primary-500 to-teal-500",
     },
     {
+      id: "ppl",
       year: "2026",
       title: "Praktik Pengalaman Lapangan (PPL)",
       institution: "SMA N 11 Yogyakarta",
@@ -39,6 +41,7 @@ export const aboutData = {
       color: "from-emerald-500 to-teal-500",
     },
     {
+      id: "degree",
       year: "2015 – 2020",
       title: "Sarjana Pendidikan",
       institution: "Universitas Negeri Yogyakarta",

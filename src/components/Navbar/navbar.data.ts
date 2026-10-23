@@ -8,7 +8,14 @@ export const navbarData = {
     { id: "projects", label: "Proyek" },
     { id: "about", label: "Tentang" },
     { id: "gallery", label: "Galeri" },
-    { id: "artifacts", label: "Artefak" },
+    {
+      id: "artifacts",
+      label: "Artefak",
+      children: [
+        { id: "ppl", label: "PPL" },
+        { id: "seminar", label: "Seminar" },
+      ],
+    },
     { id: "contact", label: "Kontak" },
   ],
   ctaButton: {
@@ -18,4 +25,4 @@ export const navbarData = {
 };
 
 export type NavbarData = typeof navbarData;
-export type NavLink = typeof navbarData.navLinks[0];
+export type NavLink = (typeof navbarData.navLinks)[number];

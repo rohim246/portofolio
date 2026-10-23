@@ -5,6 +5,7 @@ export interface Project {
   longDescription: string;
   category: "web" | "education" | "tools";
   image: string;
+  video?: string;
   techStack: string[];
   liveUrl?: string;
   sourceUrl?: string;
@@ -56,6 +57,17 @@ export const projects: Project[] = [
     image: "/images/mengajar3.jpeg",
     techStack: ["Dokumentasi", "Pendidikan"],
     sourceUrl: "https://github.com/rohim246",
+    featured: true,
+  },
+  {
+    id: "dokumentasi-video",
+    title: "Dokumentasi Video Pembelajaran",
+    description: "Dokumentasi kegiatan pendidikan dan pembelajaran.",
+    longDescription: "Video dokumentasi kegiatan pendidikan dan pembelajaran.",
+    category: "education",
+    image: "/images/mengajar3.jpeg",
+    video: "/Videos/dokumentasi%20video.mp4",
+    techStack: ["Dokumentasi", "Pendidikan"],
     featured: true,
   },
 ];
