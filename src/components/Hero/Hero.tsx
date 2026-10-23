@@ -182,100 +182,118 @@ const Hero = () => {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center pt-24 md:pt-32 pb-32"
+        className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 px-4 pb-28 pt-24 text-center sm:px-6 md:pt-32 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:text-left"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Badge */}
-        <motion.div variants={itemVariants} className="mb-10">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-gray-300">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            {heroData.badgeText}
-          </span>
-        </motion.div>
-
-        {/* Greeting */}
-        <motion.p
-          variants={itemVariants}
-          className="text-lg md:text-xl text-gray-400 mb-6 font-medium"
-        >
-          {heroData.greeting}
-        </motion.p>
-
-        {/* Name */}
-        <motion.h1
-          variants={itemVariants}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-8"
-        >
-          <span className="gradient-text">{heroData.name}</span>
-        </motion.h1>
-
-        {/* Typewriter headline */}
-        <motion.div variants={itemVariants} className="mb-10 h-10 md:h-12">
-          <p className="text-xl md:text-2xl lg:text-3xl font-semibold text-white/80">
-            {displayedText}
-            {!done && (
-              <span className="inline-block w-[3px] h-[1em] bg-accent-500 ml-1 animate-pulse align-middle" />
-            )}
-          </p>
-        </motion.div>
-
-        {/* Subtitle */}
-        <motion.p
-          variants={itemVariants}
-          className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-4 leading-relaxed text-balance"
-        >
-          {heroData.subtitle}
-        </motion.p>
-
-        {/* Description */}
-        <motion.p
-          variants={itemVariants}
-          className="text-sm md:text-base text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed text-balance"
-        >
-          {heroData.description}
-        </motion.p>
-
-        {/* CTA Buttons */}
+        {/* Portrait */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+          className="order-1 mx-auto flex h-[min(32vh,280px)] w-full max-w-[260px] items-end justify-center sm:h-[min(48vh,440px)] sm:max-w-[340px] lg:order-2 lg:h-[min(72vh,680px)] lg:max-w-none"
         >
-          {heroData.ctaButtons.map((btn, idx) => (
-            <a
-              key={idx}
-              href={btn.href}
-              className={`btn-${btn.variant} ${btn.variant === "primary" ? "" : ""}`}
-              onClick={btn.variant === "primary" ? (e: React.MouseEvent) => {
-                e.preventDefault();
-                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-              } : undefined}
-            >
-              {btn.label}
-              {btn.icon && <btn.icon className={btn.variant === "primary" ? "animate-bounce" : ""} />}
-            </a>
-          ))}
+          <div className="relative flex h-full w-full items-end justify-center overflow-hidden rounded-[2rem] border border-white/[0.08] bg-gradient-to-b from-primary-400/[0.08] via-teal-400/[0.05] to-transparent">
+            <div className="absolute bottom-0 left-1/2 h-3/4 w-4/5 -translate-x-1/2 rounded-full bg-primary-400/15 blur-3xl" />
+            <img
+              src="/images/foto_profile.png"
+              alt="Abdur Rohim"
+              className="relative z-10 h-full max-w-full object-contain object-bottom drop-shadow-2xl"
+              fetchPriority="high"
+            />
+          </div>
         </motion.div>
 
-        {/* Social Links */}
-        <motion.div
-          variants={itemVariants}
-          className="flex items-center justify-center gap-6"
-        >
-          {heroData.socialLinks.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.label}
-              className="w-12 h-12 rounded-xl glass flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110"
-            >
-              <social.icon size={20} />
-            </a>
-          ))}
-        </motion.div>
+        <div className="order-2 lg:order-1">
+          {/* Badge */}
+          <motion.div variants={itemVariants} className="mb-8 lg:mb-10">
+            <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm text-gray-300">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+              {heroData.badgeText}
+            </span>
+          </motion.div>
+
+          {/* Greeting */}
+          <motion.p
+            variants={itemVariants}
+            className="mb-4 text-lg font-medium text-gray-400 md:text-xl"
+          >
+            {heroData.greeting}
+          </motion.p>
+
+          {/* Name */}
+          <motion.h1
+            variants={itemVariants}
+            className="mb-6 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl"
+          >
+            <span className="gradient-text">{heroData.name}</span>
+          </motion.h1>
+
+          {/* Typewriter headline */}
+          <motion.div variants={itemVariants} className="mb-7 min-h-10 md:min-h-12">
+            <p className="text-xl font-semibold text-white/80 md:text-2xl lg:text-3xl">
+              {displayedText}
+              {!done && (
+                <span className="ml-1 inline-block h-[1em] w-[3px] animate-pulse bg-accent-500 align-middle" />
+              )}
+            </p>
+          </motion.div>
+
+          {/* Subtitle */}
+          <motion.p
+            variants={itemVariants}
+            className="mx-auto mb-4 max-w-2xl text-base leading-relaxed text-gray-400 text-balance lg:mx-0 lg:text-lg"
+          >
+            {heroData.subtitle}
+          </motion.p>
+
+          {/* Description */}
+          <motion.p
+            variants={itemVariants}
+            className="mx-auto mb-8 max-w-3xl text-sm leading-relaxed text-gray-300 text-balance md:text-base lg:mx-0"
+          >
+            {heroData.description}
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="mb-10 flex flex-col items-center justify-center gap-5 sm:flex-row lg:justify-start"
+          >
+            {heroData.ctaButtons.map((btn, idx) => (
+              <a
+                key={idx}
+                href={btn.href}
+                className={`btn-${btn.variant} ${btn.variant === "primary" ? "" : ""}`}
+                onClick={btn.variant === "primary" ? (e: React.MouseEvent) => {
+                  e.preventDefault();
+                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                } : undefined}
+              >
+                {btn.label}
+                {btn.icon && <btn.icon className={btn.variant === "primary" ? "animate-bounce" : ""} />}
+              </a>
+            ))}
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            variants={itemVariants}
+            className="flex items-center justify-center gap-5 lg:justify-start"
+          >
+            {heroData.socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="flex h-12 w-12 items-center justify-center rounded-xl glass text-gray-400 transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:text-white"
+              >
+                <social.icon size={20} />
+              </a>
+            ))}
+          </motion.div>
+        </div>
       </motion.div>
 
       {/* Scroll indicator */}
