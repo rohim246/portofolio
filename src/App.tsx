@@ -6,6 +6,7 @@ import Contact from "./components/Contact/Contact.tsx";
 import Footer from "./components/Footer/Footer.tsx";
 import Gallery from "./components/Gallery/Gallery.tsx";
 import Artifacts from "./components/Artifacts/Artifacts.tsx";
+import PPL from "./components/Artifacts/PPL.tsx";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Projects />
         <About />
         <Gallery />
+        <PPL />
         <Artifacts />
         <Contact />
       </main>

@@ -43,8 +43,20 @@ const Navbar = () => {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
       setActiveSection(id);
+      if (window.location.hash !== `#${id}`) {
+        window.history.pushState(null, "", `#${id}`);
+      }
+      window.requestAnimationFrame(() => {
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        const navbarHeight =
+          document.querySelector("nav")?.getBoundingClientRect().height ?? 0;
+        const top =
+          target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+        window.scrollTo({ top, behavior: "smooth" });
+      });
     }
     setMobileOpen(false);
     setOpenDropdown(null);
@@ -130,13 +142,17 @@ const Navbar = () => {
                         >
                           <div className="glass-strong rounded-lg p-1 shadow-xl">
                             {link.children.map((child) => (
-                              <button
+                              <a
                                 key={child.id}
-                                onClick={() => scrollTo(child.id)}
+                                href={`#${child.id}`}
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  scrollTo(child.id);
+                                }}
                                 className={`block w-full rounded-md px-3 py-2 text-left text-sm transition-colors ${activeSection === child.id ? "bg-white/10 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white"}`}
                               >
                                 {child.label}
-                              </button>
+                              </a>
                             ))}
                           </div>
                         </motion.div>
@@ -229,13 +245,17 @@ const Navbar = () => {
                             exit={{ opacity: 0, height: 0 }}
                           >
                             {link.children.map((child) => (
-                              <button
+                              <a
                                 key={child.id}
-                                onClick={() => scrollTo(child.id)}
+                                href={`#${child.id}`}
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  scrollTo(child.id);
+                                }}
                                 className={`block w-full rounded-lg px-4 py-2.5 text-left text-sm transition-colors ${activeSection === child.id ? "text-white" : "text-gray-400 hover:text-white"}`}
                               >
                                 {child.label}
-                              </button>
+                              </a>
                             ))}
                           </motion.div>
                         )}

@@ -68,7 +68,7 @@ export const aboutData = {
       color: "from-primary-500 to-teal-500",
     },
     {
-      id: "ppl",
+      id: "ppl-experience",
       year: "2026",
       title: "Praktik Pengalaman Lapangan (PPL)",
       institution: "SMA N 11 Yogyakarta",
