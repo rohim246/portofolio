@@ -182,7 +182,7 @@ const Hero = () => {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 px-4 pb-28 pt-24 text-center sm:px-6 md:pt-32 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:text-left"
+        className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 px-4 pb-28 pt-24 text-center sm:px-6 md:pt-32 lg:grid-cols-[1.15fr_0.85fr] lg:gap-24 lg:text-left"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -257,7 +257,7 @@ const Hero = () => {
           {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
-            className="mb-10 flex flex-col items-center justify-center gap-5 sm:flex-row lg:justify-start"
+            className="relative mb-10 flex flex-col items-center justify-center gap-5 sm:flex-row lg:justify-start"
           >
             {heroData.ctaButtons.map((btn, idx) => (
               <a
@@ -273,6 +273,29 @@ const Hero = () => {
                 {btn.icon && <btn.icon className={btn.variant === "primary" ? "animate-bounce" : ""} />}
               </a>
             ))}
+
+            {/* Keep the scroll cue centered in the space between the text and portrait. */}
+            <motion.div
+              className="absolute left-[calc(100%_+_18px)] top-1/2 hidden -translate-y-1/2 flex-col items-center gap-2 lg:flex"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.5, duration: 1 }}
+            >
+              <span className="text-xs uppercase tracking-widest text-gray-500">
+                Scroll
+              </span>
+              <motion.div
+                className="flex h-10 w-6 justify-center rounded-full border-2 border-white/20 pt-2"
+                animate={{ opacity: [1, 0.5, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <motion.div
+                  className="h-1.5 w-1.5 rounded-full bg-white/60"
+                  animate={{ y: [0, 16, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                />
+              </motion.div>
+            </motion.div>
           </motion.div>
 
           {/* Social Links */}
@@ -296,28 +319,6 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.5, duration: 1 }}
-      >
-        <span className="text-xs text-gray-500 tracking-widest uppercase">
-          Scroll
-        </span>
-        <motion.div
-          className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2"
-          animate={{ opacity: [1, 0.5, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <motion.div
-            className="w-1.5 h-1.5 rounded-full bg-white/60"
-            animate={{ y: [0, 16, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
-      </motion.div>
     </section>
   );
 };
