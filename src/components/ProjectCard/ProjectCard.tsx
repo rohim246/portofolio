@@ -8,7 +8,7 @@ export interface Project {
   title: string;
   description: string;
   longDescription: string;
-  category: "web" | "education" | "education-semester-2" | "ppg-learning-reflection" | "tools";
+  category: "web" | "education" | "education-semester-2" | "ppg-learning-reflection" | "tools" | "non-teaching";
   image: string;
   video?: string;
   techStack: string[];

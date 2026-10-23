@@ -4,6 +4,7 @@ export const categoryColor: Record<string, string> = {
   "education-semester-2": "from-emerald-500 to-teal-500",
   "ppg-learning-reflection": "from-emerald-500 to-teal-500",
   tools: "from-orange-500 to-amber-500",
+  "non-teaching": "from-sky-500 to-blue-500",
 };
 
 export const categoryLabels: Record<string, string> = {
@@ -12,6 +13,7 @@ export const categoryLabels: Record<string, string> = {
   "education-semester-2": "Pendidikan",
   "ppg-learning-reflection": "Pendidikan",
   tools: "Tools",
+  "non-teaching": "Non Mengajar",
 };
 
 export type CategoryColorMap = typeof categoryColor;

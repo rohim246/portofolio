@@ -28,7 +28,7 @@ export const projects: Project[] = [
     id: "smart-classroom",
     title: "SIP Sipaling Hadir",
     description: "Aplikasi Presensi Siswa Berbasis QR Code. Izin jadi mudah, absensi jadi cepat, dan guru bisa pantau kehadiran siswa secara real-time.",
-    longDescription: "Sistem manajemen kelas pintar yang membantu guru dalam mengelola kelas secara efisien. Dilengkapi dengan absensi QR code, penjadwalan otomatis, analitik performa siswa berbasis data, dan notifikasi real-time untuk orang tua.",
+    longDescription: "Sistem manajemen Presensi yang membantu guru dalam mengelola kelas secara efisien. Dilengkapi dengan absensi QR code, penjadwalan otomatis, analitik performa siswa berbasis data, dan notifikasi real-time untuk orang tua.",
     category: "web",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
     techStack: ["React.js", "BunJs", "TypeScript","Laravel", "Shadcn", "Tailwind CSS"],

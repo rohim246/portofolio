@@ -5,7 +5,7 @@ export const footerData = {
   logo: {
     initials: "AR",
     name: "Abdur Rohim",
-    copyright: "Dibuat dengan ❤️ dan React",
+    copyright: "abdur rohim, S.Pd.",
   },
   socialLinks: [
     {
