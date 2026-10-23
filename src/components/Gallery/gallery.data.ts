@@ -33,7 +33,7 @@ export const projects: Project[] = [
     category: "web",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
     techStack: ["Next.js", "Prisma", "PostgreSQL", "Chart.js", "Tailwind CSS"],
-    liveUrl: "#",
+    liveUrl: "https://sipaling-hadir.vercel.app/",
     sourceUrl: "https://github.com/rohim246",
     featured: true,
   },
