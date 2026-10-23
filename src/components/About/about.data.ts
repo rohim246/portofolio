@@ -3,6 +3,42 @@ import { HiAcademicCap, HiBriefcase, HiMapPin, HiSparkles } from "react-icons/hi
 export const aboutData = {
   title: "Identitas & Filosofi Pendidik",
   subtitle: "Tentang Saya",
+  visionMission: {
+    vision:
+      "Menjadi pendidik yang berdampak dan bermanfaat, yang hadir untuk menuntun, membangun semangat, serta mengantarkan anak didik mencapai kesuksesan dan kemandirian dalam menghadapi tantangan zamannya.",
+    missions: [
+      {
+        title: "Mengembangkan kompetensi dan kualitas diri secara berkelanjutan",
+        description:
+          "melalui refleksi diri, evaluasi praktik pembelajaran, serta pemanfaatan teknologi dan pendekatan pembelajaran yang relevan dengan perkembangan zaman.",
+      },
+      {
+        title: "Mewujudkan pembelajaran yang inklusif, humanistis, dan berpusat pada murid",
+        description:
+          "dengan menghargai keberagaman karakter, kebutuhan, potensi, serta kecepatan belajar setiap murid.",
+      },
+      {
+        title: "Menuntun murid untuk berkembang melalui proses belajar yang bermakna",
+        description:
+          "dengan menerapkan pembelajaran berdiferensiasi, asesmen formatif, serta umpan balik yang konstruktif agar setiap murid mampu berkembang dari tidak tahu menjadi tahu dan dari tidak bisa menjadi bisa.",
+      },
+      {
+        title: "Menumbuhkan semangat belajar, kepercayaan diri, dan kemandirian murid",
+        description:
+          "melalui lingkungan belajar yang aman, komunikasi yang empatis, serta kesempatan untuk mencoba, berkreasi, dan belajar dari kesalahan.",
+      },
+      {
+        title: "Mengembangkan kemampuan berpikir kritis dan pemecahan masalah murid",
+        description:
+          "melalui pembelajaran berbasis proyek dan masalah yang relevan dengan kehidupan nyata agar murid mampu menghadapi tantangan zamannya.",
+      },
+      {
+        title: "Membangun kolaborasi dan budaya berbagi praktik baik",
+        description:
+          "dengan sesama pendidik serta pihak terkait untuk menciptakan lingkungan pendidikan yang mendukung pertumbuhan, kesuksesan, dan kemandirian murid.",
+      },
+    ],
+  },
   profile: {
     name: "Abdur Rohim",
     role: "Calon Guru & Developer",

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { HiSparkles } from "react-icons/hi2";
 import SectionWrapper from "../SectionWrapper";
 import { aboutData, type TimelineItem } from "./about.data";
 
@@ -42,6 +43,73 @@ const About = () => {
           >
             {aboutData.title}
           </motion.h2>
+        </div>
+
+        {/* Vision and mission */}
+        <div className="mb-20">
+          <motion.div
+            className="relative overflow-hidden rounded-3xl border border-primary-400/20 bg-gradient-to-br from-primary-500/15 via-teal-500/10 to-transparent p-7 sm:p-10 lg:p-12"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-teal-400/10 blur-3xl" />
+            <div className="relative mx-auto max-w-4xl">
+              <div className="mb-5 flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-400/15 text-primary-300">
+                  <HiSparkles size={21} aria-hidden="true" />
+                </span>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-300">
+                  Visi
+                </p>
+              </div>
+              <p className="text-center text-xl font-medium italic leading-relaxed text-white sm:text-2xl lg:text-3xl">
+                “{aboutData.visionMission.vision}”
+              </p>
+            </div>
+          </motion.div>
+
+          <div className="mb-8 mt-12 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-accent-400">
+                Langkah nyata
+              </p>
+              <h3 className="text-2xl font-bold text-white sm:text-3xl">
+                Misi Saya
+              </h3>
+            </div>
+            <p className="max-w-xl text-sm leading-relaxed text-gray-400 sm:text-right">
+              Nilai-nilai yang menjadi pegangan dalam mendampingi setiap murid
+              untuk tumbuh dan menemukan potensinya.
+            </p>
+          </div>
+
+          <motion.ol
+            className="grid gap-4 md:grid-cols-2"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {aboutData.visionMission.missions.map((mission, index) => (
+              <motion.li
+                key={mission.title}
+                variants={itemVariants}
+                className="glass group flex gap-4 rounded-2xl p-5 transition-colors duration-300 hover:bg-white/[0.07] sm:p-6"
+              >
+                <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-primary-400/20 bg-primary-400/10 font-mono text-sm font-semibold text-primary-300 transition-colors group-hover:bg-primary-400/20">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <p className="text-sm leading-relaxed text-gray-300 sm:text-base">
+                  <span className="font-semibold text-white">
+                    {mission.title}
+                  </span>{" "}
+                  {mission.description}
+                </p>
+              </motion.li>
+            ))}
+          </motion.ol>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
